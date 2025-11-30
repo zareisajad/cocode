@@ -18,5 +18,6 @@ self learners in any programming field. beginners to experts who:
 - **Notes / diagrams:** obsidian, excalidraw
 
 
-youtube playlist:
-- https://youtube.com/
+### Watch me build cocode:
+- [Youtube playlist](https://www.youtube.com/playlist?list=PLi6rlPMo5ZJCI_xmO_ZjaGPKIRMFcHR9G)
+- [Instagram](https://www.instagram.com/zareisajad98/)
