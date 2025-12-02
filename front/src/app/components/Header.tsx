@@ -1,20 +1,23 @@
 "use client";
 
+import Link from "next/link";
+import { Trophy, SearchIcon } from "@components/ui/icons";
+
 
 export default function Header() {
 
 
   return (
-    <header className="bg-white py-3 border-b px-3 md:px-0 z-50">
-      <div className="flex flex-col gap-4">
-
-        <nav
-          className="font-shabnam "
-        >
-          سلام سجاد
-        </nav>
-      </div>
-
+    <header className="hidden md:flex text-gray-200 items-center gap-5 p-8 border-b border-gray-700 sticky top-0">
+        <Link className="flex gap-3 items-center" href="/search">
+          <SearchIcon />
+          <span className="text-md">جستجو</span>
+        </Link>
+        
+        <Link className="flex gap-3 items-center" href="/search">
+          <Trophy />
+          <span className="text-md">جدول امتیاز</span>
+        </Link>
     </header>
   );
 }
