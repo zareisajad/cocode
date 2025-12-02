@@ -1,26 +1,22 @@
-import { AuthProvider } from "@context/AuthContext";
 import "./globals.css";
 
 import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
- 
+
 
   return (
     <html lang="fa" dir="rtl">
-      <body className="">
+      <body className="h-screen">
+        <div className="flex h-full">
+          <Navbar />
 
-        <Header />
-        <main>
-          {/* <AuthProvider> */}
-
-              {children}
-
-          {/* </AuthProvider> */}
-        </main>
-        <Footer />
-        
+          <div className="flex-1 bg-gray-800 overflow-y-auto ">
+            <Header />
+            { children }
+          </div>
+        </div>
       </body>
     </html>
   );

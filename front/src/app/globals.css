@@ -16,8 +16,13 @@ img {
 }
 
 body {
-    
+    font-family: "Shabnam";
     margin: 0;
     padding: 0;
     font-size: 15px;
+    color: #e0e0e0;
+}
+
+.badge {
+    font-family: monospace;
 }
