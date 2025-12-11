@@ -59,7 +59,7 @@ export default function ExplorePage() {
         </div>
       </div>
 
-      <div className="rounded-2xl bg-gray-900  p-4 space-y-2">
+<div className="rounded-2xl bg-gray-900  p-4 space-y-2">
   <div className="flex items-center justify-between">
     <h3 className="font-semibold">گروه: جاوااسکریپت روزانه</h3>
     <span className="text-xs text-zinc-500">۴ دقیقه قبل</span>
@@ -71,6 +71,10 @@ export default function ExplorePage() {
 
   <button className="text-blue-400 text-sm font-medium">مشاهده پست</button>
 </div>
+
+
+
+
 <div className="rounded-2xl bg-gray-900  p-4 space-y-2">
   <h3 className="font-semibold">چالش: ۳۰ روز کدنویسی</h3>
 
@@ -103,3 +107,4 @@ export default function ExplorePage() {
     </PageLayout>
   );
 }
+

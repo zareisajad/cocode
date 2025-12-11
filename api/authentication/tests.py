@@ -1,3 +1,13 @@
 from django.test import TestCase
 
-# Create your tests here.
+
+def login_user(request):
+    pass
+
+
+def register_user(requset):
+    pass
+
+
+def logout_user(request):
+    pass

@@ -14,6 +14,7 @@ export { default as Instagram } from './Instagram';
 export { default as Github } from './Github';
 export { default as Cog } from './Cog';
 export { default as Logout } from './Logout';
-export { default as Bell } from './Bell';
 export { default as People } from './People';
+export { default as Bell } from './Bell';
 export { default as EyeIcon } from './EyeIcon';
+

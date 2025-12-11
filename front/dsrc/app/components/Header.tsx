@@ -26,3 +26,4 @@ export default function Header({ title }: {title : string}) {
     </header>
   );
 }
+
