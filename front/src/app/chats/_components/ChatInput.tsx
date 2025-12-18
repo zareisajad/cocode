@@ -18,7 +18,6 @@ export default function ChatInput({ onSend }: ChatInputProps) {
 
   return (
     <div className="flex gap-2 p-0 md:p-4 bg-gray-900">
-     
       <button onClick={handleSend} className="px-4 py-3 bg-blue-700 rounded-xl cursor-pointer">
         <SendIcon />
       </button>

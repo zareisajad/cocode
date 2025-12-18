@@ -14,6 +14,7 @@ export function SearchInput({
   onChange,
   loading = false,
   className = "",
+  placeholder,
   disabled,
   ...props
 }: SearchInputProps) {
@@ -31,7 +32,7 @@ export function SearchInput({
         type="search"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="جستجو: کاربر، گروه، مهارت، چالش و ..."
+        placeholder={placeholder}
         disabled={disabled}
         className={`
           w-full 

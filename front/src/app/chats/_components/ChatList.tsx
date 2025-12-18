@@ -13,7 +13,7 @@ export default function ChatList() {
 
   return (
     <div className="w-100 bg-gray-800 p-4 hidden md:flex flex-col gap-3">
-      <SearchInput />
+      <SearchInput placeholder="جستجو" />
 
       {chats.map((chat) => {
         const isActive = chat.id === activeId;

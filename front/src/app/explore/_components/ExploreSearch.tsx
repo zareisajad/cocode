@@ -7,7 +7,7 @@ export function ExploreSearch({ initialQuery }: { initialQuery: string }) {
   const [query, setQuery] = useState("");
 
   return (
-    <SearchInput value={query} onChange={setQuery} autoFocus />
+    <SearchInput placeholder="جستجوی کاربر، گروه، مهارت و ..." value={query} onChange={setQuery} autoFocus />
   );
 }
 

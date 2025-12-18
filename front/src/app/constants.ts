@@ -1,10 +1,12 @@
 
 export const PAGE_TITLES = {
   leaderboard: "جدول امتیازات",
-  profile: "پروفایل من",
+  profile: "پروفایل",
   explore: "اکسپلور",
-  home: "خانه",
+  home: "فید",
   chats: "چت ها",
-  notifications: "اعلانات"
+  notifications: "اعلانات",
+  settings: "تنظیمات",
+  create: "جدید",
 };
 
