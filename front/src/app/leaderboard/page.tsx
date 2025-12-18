@@ -10,7 +10,7 @@ export function generateMetadata() {
 export default function LeaderboardPage() {
 
   return(
-  <PageLayout title={PAGE_TITLES.explore} className="gap-10">
+  <PageLayout title={PAGE_TITLES.explore} className="gap-5">
 
       <div className="flex justify-between bg-gray-900 rounded-3xl border-2 border-yellow-400 p-5 items-center w-full gap-3">
         <div className="flex items-center gap-5">
