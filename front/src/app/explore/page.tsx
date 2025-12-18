@@ -1,22 +1,26 @@
 
 import PageLayout from "@components/ui/PageLayout";
 import { PAGE_TITLES } from "../constants";
-import TopicsSection from "@components/Topics";
-import UsersSection from "@components/Users";
-import GroupsSection from "@components/Groups";
-import ChallengesSection from "@components/Challenges";
+import { ExploreSearch } from "./_components/ExploreSearch";
+import ExploreResults from "./_components/ExploreResults";
 
 export function generateMetadata() {
   return { title: PAGE_TITLES.explore };
 }
 
-export default function ExplorePage() {
+interface ExplorePageProps {
+  searchParams: { q?: string};
+}
+
+export default function ExplorePage({ searchParams }: ExplorePageProps) {
+  const query = searchParams.q ?? "";
+  // const data = TODO => fetch data here
+  // TODO => pass data={data} to ExploreResults
+
   return (
     <PageLayout title={PAGE_TITLES.explore}>
-    <TopicsSection />
-    <UsersSection />
-    <GroupsSection />
-    <ChallengesSection />
+      <ExploreSearch initialQuery={query} />    
+      <ExploreResults query={query} />
     </PageLayout>
   );
-}
+} 

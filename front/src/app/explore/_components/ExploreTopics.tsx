@@ -11,9 +11,9 @@ const topics = [
 "networking"
 ];
 
-export default function TopicsSection() {
+export default function ExploreTopics() {
     return (
-        <div className="mb-10">
+        <div className="my-10">
         <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-semibold">مهارت ها</h3>
         </div>

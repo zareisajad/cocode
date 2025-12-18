@@ -9,7 +9,7 @@ const challenge = {
     tags: ["۱۲۳ امتیاز", "۷ روز", "مبتدی"]
 };
 
-export default function ChallengesSection() {
+export default function ExploreChallenges() {
     return (
         <div className="mb-10">
         <div className="flex items-center justify-between mb-4">

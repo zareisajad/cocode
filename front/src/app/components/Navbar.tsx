@@ -9,7 +9,7 @@ export default function Navbar() {
 
 
   return (
-    <aside className="w-80 p-8 border-l hidden md:flex bg-gray-800 border-gray-700 flex-col gap-8 justify-between sticky top-0">
+    <aside className="w-80 px-8 py-4 border-l hidden md:flex bg-gray-800 border-gray-700 flex-col gap-8 justify-between sticky top-0">
         <nav className="flex flex-col gap-7">
             <h1 className="text-2xl  text-blue-400 mb-10">کوکُد | CoCode</h1>
 
@@ -19,7 +19,7 @@ export default function Navbar() {
             </Link>
 
             <Link href={'/explore'} className="flex items-center gap-3 text-gray-200 hover:text-white">
-                <Signal />
+                <SearchIcon />
                 <span className="text-md">اکسپلور</span>
             </Link>
 

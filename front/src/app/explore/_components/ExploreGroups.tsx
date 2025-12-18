@@ -9,7 +9,7 @@ const groups = [
 { title: "یادگیری پایتون", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Python.svg/1024px-Python.svg.png", members: 12, level: "مبتدی", status: "پذیرش", highlight: "گروه برتر ماه" },
 ];
 
-export default function GroupsSection() {
+export default function ExploreGroups() {
     return (
         <div className="mb-10">
         <div className="flex items-center justify-between mb-4">

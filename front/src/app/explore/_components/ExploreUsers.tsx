@@ -11,7 +11,7 @@ const users = [
 { name: "zareisajad@", img: "https://sajadzarei.ir/images/me.webp", rank: "1% برتر" },
 ];
 
-export default function UsersSection() {
+export default function ExploreUsers() {
     return (
         <div className="mb-10">
         <div className="flex items-center justify-between mb-4">
