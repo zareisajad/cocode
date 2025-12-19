@@ -1,60 +1,52 @@
+
 "use client";
+import { createContext, useContext, useState, useEffect } from "react";
 
-import React, { createContext, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { deleteCookie } from "cookies-next";
+type AuthContextType = {
+  accessToken: string | null;
+  user: any | null;
+  setAccessToken: (token: string | null) => void;
+  setUser: (user: any | null) => void;
+};
 
-interface AuthContextType {
-  isAuthenticated: boolean;
-  login: () => void;
-  logout: () => void;
-  pushRouter: (route: string) => void;
-}
+const AuthContext = createContext<AuthContextType | null>(null);
 
-export const AuthContext = createContext<AuthContextType | undefined>(undefined);
+export function AuthProvider({ children }: { children: React.ReactNode }) {
+  const [accessToken, setAccessToken] = useState<string | null>(null);
+  const [user, setUser] = useState<any | null>(null);
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const router = useRouter();
-
-  const checkAuth = async () => {
-    try {
-      const res = await fetch("http://localhost:8000/customers/profile/ping/", {
+  // Restore session once
+  useEffect(() => {
+    async function restore() {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/refresh/`, {
+        method: "POST",
         credentials: "include",
       });
 
       if (res.ok) {
-        setIsAuthenticated(true);
-      } else {
-        setIsAuthenticated(false);
-      }
-    } catch (err) {
-      console.error("Auth check failed", err);
-      setIsAuthenticated(false);
-    }
-  };
+        const data = await res.json();
+        setAccessToken(data.access);
 
-  useEffect(() => {
-    checkAuth();
+        // optionally fetch user info
+        const meRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/me/`, {
+          headers: { Authorization: `Bearer ${data.access}` },
+        });
+        if (meRes.ok) setUser(await meRes.json());
+      }
+    }
+
+    restore();
   }, []);
 
-  const login = () => {
-    setIsAuthenticated(true);
-  };
-
-  const logout = async () => {
-    deleteCookie("accessToken");
-    setIsAuthenticated(false);
-    router.push("/auth/login");
-  };
-
-  const pushRouter = (route: string) => {
-    router.push(route);
-  };
-
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout, pushRouter }}>
+    <AuthContext.Provider value={{ accessToken, user, setAccessToken, setUser }}>
       {children}
     </AuthContext.Provider>
   );
-};
+}
+
+export function useAuth() {
+  const ctx = useContext(AuthContext);
+  if (!ctx) throw new Error("useAuth must be inside AuthProvider");
+  return ctx;
+}

@@ -4,13 +4,15 @@ import Link from "next/link";
 import { Trophy, SearchIcon, Home, Signal, Plus, Inbox, Bell, Cog, Logout } from "@components/ui/icons";
 import Avatar from "./ui/Avatar";
 import { PAGE_TITLES } from "../constants";
+import { useAuth } from "../context/AuthContext";
 
 
 export default function Navbar() {
 
-
+  const { accessToken, user } = useAuth();
+  if (!accessToken) return null;
   return (
-    <aside className="w-80 px-8 py-4 border-l hidden md:flex bg-gray-800 border-gray-700 flex-col gap-8 justify-between sticky top-0">
+    <aside className="w-80  px-8 py-4 border-l hidden md:flex bg-gray-800 border-gray-700 flex-col gap-8 justify-between sticky top-0">
         <nav className="flex flex-col gap-7">
             <h1 className="text-2xl  text-blue-400 mb-10">کوکُد | CoCode</h1>
 
