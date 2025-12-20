@@ -13,7 +13,6 @@ from .models import User
 @permission_classes([AllowAny])
 def refresh_view(request):
     refresh_token = request.COOKIES.get("refresh")
-    print(refresh_token, "hiiiiiiiiiiii")
     if not refresh_token:
         return Response(
             {"detail": "No refresh token"},
@@ -88,7 +87,7 @@ def register_view(request):
 def login_view(request):
     email = request.data.get("email")
     password = request.data.get("password")
-    print(email, password)
+
     if not email or not password:
         return Response(
             {"detail": "email and password required"},
@@ -103,7 +102,6 @@ def login_view(request):
         )
 
     refresh = RefreshToken.for_user(user)
-    print("refresh", refresh)
     response = Response(
         {
             "access": str(refresh.access_token),
@@ -124,7 +122,6 @@ def login_view(request):
         samesite="Lax",
         max_age=7 * 24 * 60 * 60,
     )
-    print(response.cookies)
     return response
 
 
