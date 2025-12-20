@@ -5,6 +5,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 type AuthContextType = {
   accessToken: string | null;
   user: any | null;
+  isLoading: boolean;
   setAccessToken: (token: string | null) => void;
   setUser: (user: any | null) => void;
 };
@@ -14,32 +15,44 @@ const AuthContext = createContext<AuthContextType | null>(null);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [user, setUser] = useState<any | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Restore session once
+
   useEffect(() => {
     async function restore() {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/refresh/`, {
-        method: "POST",
-        credentials: "include",
-      });
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/auth/refresh/`,
+          {
+            method: "POST",
+            credentials: "include",
+          }
+        );
 
-      if (res.ok) {
-        const data = await res.json();
-        setAccessToken(data.access);
+        if (res.ok) {
+          const data = await res.json();
+          setAccessToken(data.access);
 
-        // optionally fetch user info
-        const meRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/me/`, {
-          headers: { Authorization: `Bearer ${data.access}` },
-        });
-        if (meRes.ok) setUser(await meRes.json());
+          // TODO => api endpoint
+          const meRes = await fetch(
+            `${process.env.NEXT_PUBLIC_API_URL}/me/`,
+            {
+              headers: { Authorization: `Bearer ${data.access}` },
+            }
+          );
+          if (meRes.ok) setUser(await meRes.json());
+        }
+      } finally {
+        setIsLoading(false);
       }
     }
 
     restore();
   }, []);
 
+
   return (
-    <AuthContext.Provider value={{ accessToken, user, setAccessToken, setUser }}>
+    <AuthContext.Provider value={{ accessToken, user, setAccessToken, isLoading ,setUser }}>
       {children}
     </AuthContext.Provider>
   );

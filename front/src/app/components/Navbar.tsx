@@ -11,6 +11,7 @@ export default function Navbar() {
 
   const { accessToken, user } = useAuth();
   if (!accessToken) return null;
+
   return (
     <aside className="w-80  px-8 py-4 border-l hidden md:flex bg-gray-800 border-gray-700 flex-col gap-8 justify-between sticky top-0">
         <nav className="flex flex-col gap-7">
