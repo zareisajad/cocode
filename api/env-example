@@ -1,0 +1,5 @@
+DEBUG=True
+SECRET_KEY=secret-key
+DB_NAME=dbname
+DB_USER=username
+DB_PASSWORD=password
