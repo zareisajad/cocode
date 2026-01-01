@@ -1,8 +1,8 @@
 # Ignore everything in avatars
-media/avatars/*
+/api/media/avatars/*
 
 # But keep the default avatar
-!media/avatars/default.png
+!api/media/avatars/default.png
 
 
 # Byte-compiled / optimized / DLL files
