@@ -14,8 +14,16 @@ class ProfileLinkSerializer(serializers.ModelSerializer):
         fields = ["id", "label", "url"]
 
 
+class ProfileSerializer(serializers.ModelSerializer):
+    links = ProfileLinkSerializer(many=True)
+
+    class Meta:
+        model = Profile
+        fields = ["public_name", "avatar", "bio", "links"]
+
+
 class MeSerializer(serializers.ModelSerializer):
-    profile = serializers.SerializerMethodField()
+    profile = ProfileSerializer(read_only=True)
     friends_count = serializers.SerializerMethodField()
     pending_requests_count = serializers.SerializerMethodField()
 
@@ -30,16 +38,6 @@ class MeSerializer(serializers.ModelSerializer):
             "pending_requests_count",
         ]
 
-    def get_profile(self, obj):
-        profile = getattr(obj, "profile", None)
-        if not profile:
-            return {}
-        return {
-            "public_name": profile.public_name,
-            "avatar": profile.avatar.url,
-            "bio": profile.bio,
-            "links": ProfileLinkSerializer(profile.links.all(), many=True).data,
-        }
 
     def get_friends_count(self, obj):
         return friends(obj).count()
@@ -52,9 +50,8 @@ class MeSerializer(serializers.ModelSerializer):
         ).count()
 
 
-
 class PublicProfileSerializer(serializers.ModelSerializer):
-    profile = serializers.SerializerMethodField()
+    profile = ProfileSerializer(read_only=True)
     friends_count = serializers.SerializerMethodField()
     is_friend = serializers.SerializerMethodField()
     request_sent = serializers.SerializerMethodField()
@@ -62,23 +59,19 @@ class PublicProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ["id", "username", "profile", "friends_count", "is_friend", "request_sent", "request_received"]
+        fields = [
+            "id",
+            "username",
+            "profile",
+            "friends_count",
+            "is_friend",
+            "request_sent",
+            "request_received",
+        ]
 
-
-    def get_profile(self, obj):
-        profile = getattr(obj, "profile", None)
-        if not profile:
-            return {}
-        return {
-            "public_name": profile.public_name,
-            "avatar": profile.avatar.url,
-            "bio": profile.bio,
-            "links": ProfileLinkSerializer(profile.links.all(), many=True).data,
-        }
 
     def get_friends_count(self, obj):
         return friends(obj).count()
-
 
     def get_is_friend(self, obj):
         request = self.context.get("request")
